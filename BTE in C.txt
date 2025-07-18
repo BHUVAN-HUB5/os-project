@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+float estimate(float act_bt,float a,float e_0)
+{
+    return a*act_bt+(1-a)*e_0;
+}
+
+int main()
+{
+    float a;
+    float act_bt[100];
+    float e_0;
+    int n;
+    
+    printf("enter no. of processes: ");
+    scanf("%d",&n);
+    
+    printf("enter burst time of each process: ");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%f",&act_bt[i]);
+    }
+    
+    printf("enter the smoothing fator(alpha value[0<=a<=1]: ");
+    scanf("%f",&a);
+    
+    printf("enter inital prediction value: ");
+    scanf("%f",&e_0);
+    
+    printf("Process\tActual_BT  Prediction\n");
+    for(int i=0;i<n;i++)
+    {
+        float prediction=estimate(act_bt[i],a,e_0);
+        printf("%d\t\t%.2f\t\t\t%.2f\n",n,act_bt[i],prediction);
+    }
+    
+}
